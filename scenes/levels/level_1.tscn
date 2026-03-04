@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cvhcoqru6qc1h" path="res://assets/sprites/world_tileset.png" id="1_ksju7"]
 [ext_resource type="Texture2D" uid="uid://cwq1k24o7ixs5" path="res://assets/sprites/platforms.png" id="2_6iamk"]
+[ext_resource type="PackedScene" uid="uid://b0fpt8yg7pois" path="res://scenes/player.tscn" id="3_nsrm0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6iamk"]
 texture = ExtResource("1_ksju7")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -136,8 +138,11 @@ texture = ExtResource("1_ksju7")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsrm0"]
 texture = ExtResource("2_6iamk")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
@@ -149,14 +154,19 @@ texture = ExtResource("2_6iamk")
 2:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_nsrm0"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_6iamk")
 sources/1 = SubResource("TileSetAtlasSource_nsrm0")
 
 [node name="Level1" type="Node2D" unique_id=1914520307]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1490745988]
-tile_map_data = PackedByteArray("AAAWABgAAAAAAAAAAAAXABgAAAAAAAAAAAAYABgAAAAAAAAAAAAZABgAAAAAAAAAAAAaABgAAAAAAAAAAAAbABgAAAAAAAAAAAAcABgAAAAAAAAAAAAdABgAAAAAAAAAAAAeABgAAAAAAAAAAAAfABgAAAAAAAAAAAAgABgAAAAAAAAAAAAhABgAAAAAAAAAAAAiABgAAAAAAAAAAAAjABgAAAAAAAAAAAAkABgAAAAAAAAAAAAlABgAAAAAAAAAAAAmABgAAAAAAAAAAAAnABgAAAAAAAAAAAAoABgAAAAAAAAAAAApABgAAAAAAAAAAAAqABgAAAAAAAAAAAArABgAAAAAAAAAAAAsABgAAAAAAAAAAAAtABgAAAAAAAAAAAAuABgAAAAAAAAAAAAvABgAAAAAAAAAAAAwABgAAAAAAAAAAAAxABgAAAAAAAAAAAAyABgAAAAAAAAAAAAzABgAAAAAAAAAAAA0ABgAAAAAAAAAAAA1ABgAAAAAAAAAAAA2ABgAAAAAAAAAAAA3ABgAAAAAAAAAAAAWABYAAQABAAAAAAAXABYAAQACAAAAAAAaABIAAQABAAAAAAAbABIAAQACAAAAAAAYABQAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAWABYAAQABAAAAAAAWABgAAAAAAAAAAAAXABgAAAAAAAAAAAAYABgAAAAAAAAAAAAZABgAAAAAAAAAAAAaABgAAAAAAAAAAAAbABgAAAAAAAAAAAAcABgAAAAAAAAAAAAdABgAAAAAAAAAAAAeABgAAAAAAAAAAAAfABgAAAAAAAAAAAAgABgAAAAAAAAAAAAhABgAAAAAAAAAAAAiABgAAAAAAAAAAAAjABgAAAAAAAAAAAAkABgAAAAAAAAAAAAlABgAAAAAAAAAAAAmABgAAAAAAAAAAAAnABgAAAAAAAAAAAAoABgAAAAAAAAAAAApABgAAAAAAAAAAAAqABgAAAAAAAAAAAArABgAAAAAAAAAAAAsABgAAAAAAAAAAAAtABgAAAAAAAAAAAAuABgAAAAAAAAAAAAvABgAAAAAAAAAAAAwABgAAAAAAAAAAAAxABgAAAAAAAAAAAAyABgAAAAAAAAAAAAzABgAAAAAAAAAAAA0ABgAAAAAAAAAAAA1ABgAAAAAAAAAAAA2ABgAAAAAAAAAAAA3ABgAAAAAAAAAAAAXABYAAQACAAAAAAAZABMAAQAAAAAAAAAcABAAAQABAAAAAAAdABAAAQACAAAAAAAVABgAAAAAAAAAAAAUABgAAAAAAAAAAAATABgAAAAAAAAAAAASABgAAAAAAAAAAAARABgAAAAAAAAAAAAQABgAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_nsrm0")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1835493778]
+position = Vector2(625, 369)
+
+[node name="Player" parent="." unique_id=1023929533 instance=ExtResource("3_nsrm0")]
 position = Vector2(625, 369)
