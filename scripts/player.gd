@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 # ─────────────────────────────────────────────
 #  Movement constants
 #  @export means they appear in the Inspector —
@@ -82,6 +84,7 @@ func _handle_movement(delta: float) -> void:
 	
 	if direction != 0.0:
 		velocity.x = move_toward(velocity.x, direction * walk_speed, acceleration * delta)
+		_sprite.flip_h = direction < 0.0
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
 
