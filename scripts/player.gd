@@ -28,9 +28,11 @@ extends CharacterBody2D
 # ─────────────────────────────────────────────
 var _is_rolling: bool = false
 var _is_invicible: bool = false
+var _is_hit: bool = false
 var _coyote_timer: float = 0.0
 var _jump_buffer: float = 0.0
 var _current_animation: String = ""
+var last_velocity: Vector2 = Vector2.ZERO
 
 # ─────────────────────────────────────────────
 #  Lifecycle
@@ -47,6 +49,7 @@ func _physics_process(delta: float) -> void:
 	_handle_jump(delta)
 	_handle_movement(delta)
 	_handle_roll()
+	last_velocity = velocity
 	move_and_slide()
 	_update_animation()
 
@@ -111,11 +114,12 @@ func _perform_roll() -> void:
 	_is_rolling = false
 	_is_invicible = false
 	
+
 # ─────────────────────────────────────────────
 #  Animation
 # ─────────────────────────────────────────────
 func _update_animation() -> void:
-	if _is_rolling:
+	if _is_rolling or _is_hit:
 		return
 	
 	if is_on_floor():
@@ -134,3 +138,21 @@ func _play_animation(animation: String) -> void:
 		return
 	_current_animation = animation
 	_sprite.play(animation)
+	
+# ─────────────────────────────────────────────
+#  Take Damage
+# ─────────────────────────────────────────────
+func take_damage() -> void:
+	if _is_invicible or _is_hit:
+		return
+	
+	_is_hit = true
+	_play_animation("hit")
+	
+	await  _sprite.animation_finished
+	
+	_is_hit = false
+	die()
+	
+func die() -> void:
+	queue_free()
