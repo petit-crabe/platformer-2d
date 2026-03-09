@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dt35kf2agfhxp"]
+
+[ext_resource type="Script" uid="uid://baoqbhm7og2qu" path="res://scripts/patrol_enemy.gd" id="1_767nm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx87h"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_767nm"]
+size = Vector2(24, 20)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=988364886]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_767nm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=823914418]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+color = Color(0.95468724, 0, 0.24269372, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1643032963]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_jx87h")
+
+[node name="LedgeRay" type="RayCast2D" parent="." unique_id=1535629830]
+target_position = Vector2(8, 16)
+collision_mask = 4
+
+[node name="WallRay" type="RayCast2D" parent="." unique_id=1730817885]
+target_position = Vector2(16, 0)
+collision_mask = 4
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1695459636]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=785077316]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_767nm")
