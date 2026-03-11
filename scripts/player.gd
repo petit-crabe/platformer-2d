@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # ─────────────────────────────────────────────
@@ -155,4 +157,8 @@ func take_damage() -> void:
 	die()
 	
 func die() -> void:
+	set_physics_process(false)
+	_play_animation("death")
+	died.emit()
+	await _sprite.animation_finished
 	queue_free()

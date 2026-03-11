@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://v6gnm6t16amn"]
+
+[ext_resource type="Texture2D" uid="uid://ccjguqith2ikb" path="res://assets/sprites/ui/heart.png" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://bpuf1ra4htimf" path="res://scripts/hud.gd" id="1_oo0fn"]
+
+[node name="HUD" type="CanvasLayer" unique_id=431407197]
+script = ExtResource("1_oo0fn")
+
+[node name="LivesContainer" type="HBoxContainer" parent="." unique_id=511932174]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 72.0
+offset_bottom = 32.0
+
+[node name="Heart1" type="TextureRect" parent="LivesContainer" unique_id=2087271214]
+layout_mode = 2
+texture = ExtResource("1_ahhtf")
+
+[node name="Heart2" type="TextureRect" parent="LivesContainer" unique_id=918406920]
+layout_mode = 2
+texture = ExtResource("1_ahhtf")
+
+[node name="Heart3" type="TextureRect" parent="LivesContainer" unique_id=803858425]
+layout_mode = 2
+texture = ExtResource("1_ahhtf")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1082110162]
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 56.0
+offset_bottom = 63.0
