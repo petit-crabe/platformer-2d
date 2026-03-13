@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dj5uulpb5dahn"]
+
+[ext_resource type="Texture2D" uid="uid://be1f3l0bnnqqj" path="res://assets/sprites/16-bit-spike-Sheet.png" id="1_5pg7g"]
+[ext_resource type="Script" uid="uid://bhjb1vau0av10" path="res://scripts/spikes.gd" id="1_xbcdo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbcdo"]
+atlas = ExtResource("1_5pg7g")
+region = Rect2(0, 0, 15, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bflj7"]
+size = Vector2(15, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pg7g"]
+size = Vector2(7, 5)
+
+[node name="Spikes" type="StaticBody2D" unique_id=1236513149]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_xbcdo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=330472901]
+texture = SubResource("AtlasTexture_xbcdo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=413341306]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_bflj7")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=430979691]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1691196056]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_5pg7g")
