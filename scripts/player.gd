@@ -3,6 +3,11 @@ extends CharacterBody2D
 signal died
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _jump_sfx: AudioStreamPlayer = $JumpSFX
+@onready var _roll_sfx: AudioStreamPlayer = $RollSFX
+@onready var _hit_sfx: AudioStreamPlayer = $HitSFX
+@onready var _death_sfx: AudioStreamPlayer = $DeathSFX
+@onready var _walk_particles: CPUParticles2D = $WalkParticles
 
 # ─────────────────────────────────────────────
 #  Movement constants
@@ -78,6 +83,7 @@ func _handle_jump(delta: float) -> void:
 		velocity.y = jump_force
 		_jump_buffer = 0.0
 		_coyote_timer = 0.0
+		_jump_sfx.play()
 	
 	# Variable height: releasing early = smaller jump
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
@@ -106,6 +112,7 @@ func _handle_roll() -> void:
 func _perform_roll() -> void:
 	_is_rolling = true
 	_is_invicible = true
+	_roll_sfx.play()
 	_play_animation("roll")
 	
 	var roll_dir := signf(velocity.x) if velocity.x != 0.0 else (-1.0 if _sprite.flip_h else 1.0)
@@ -134,6 +141,8 @@ func _update_animation() -> void:
 	else:
 		_current_animation = ""
 		_sprite.stop()
+		
+	_walk_particles.emitting = is_on_floor() and abs(velocity.x) > 10.0
 
 func _play_animation(animation: String) -> void:
 	if _current_animation == animation:
@@ -149,6 +158,7 @@ func take_damage() -> void:
 		return
 	
 	_is_hit = true
+	_hit_sfx.play()
 	_play_animation("hit")
 	
 	await  _sprite.animation_finished
@@ -158,6 +168,7 @@ func take_damage() -> void:
 	
 func die() -> void:
 	set_physics_process(false)
+	_death_sfx.play()
 	_play_animation("death")
 	died.emit()
 	await _sprite.animation_finished
