@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c7v7tbq3trapp"]
+
+[ext_resource type="Texture2D" uid="uid://cvhcoqru6qc1h" path="res://assets/sprites/world_tileset.png" id="1_oaugr"]
+[ext_resource type="Script" uid="uid://can3rhlbq40ub" path="res://scripts/level_exit.gd" id="1_ogp71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogp71"]
+size = Vector2(16, 16)
+
+[node name="LevelExit" type="Area2D" unique_id=234007147]
+collision_layer = 0
+script = ExtResource("1_ogp71")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1189308367]
+shape = SubResource("RectangleShape2D_ogp71")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1166716160]
+texture = ExtResource("1_oaugr")
+region_enabled = true
+region_rect = Rect2(112, 64, 16, 16)
