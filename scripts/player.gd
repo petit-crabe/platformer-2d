@@ -34,7 +34,7 @@ signal died
 #  Internal state
 # ─────────────────────────────────────────────
 var _is_rolling: bool = false
-var _is_invicible: bool = false
+var _is_invincible: bool = false
 var _is_hit: bool = false
 var _coyote_timer: float = 0.0
 var _jump_buffer: float = 0.0
@@ -111,7 +111,7 @@ func _handle_roll() -> void:
 	
 func _perform_roll() -> void:
 	_is_rolling = true
-	_is_invicible = true
+	_is_invincible = true
 	_roll_sfx.play()
 	_play_animation("roll")
 	
@@ -121,7 +121,7 @@ func _perform_roll() -> void:
 	await get_tree().create_timer(roll_duration).timeout
 	
 	_is_rolling = false
-	_is_invicible = false
+	_is_invincible = false
 	
 
 # ─────────────────────────────────────────────
@@ -154,7 +154,7 @@ func _play_animation(animation: String) -> void:
 #  Take Damage
 # ─────────────────────────────────────────────
 func take_damage() -> void:
-	if _is_invicible or _is_hit:
+	if _is_invincible or _is_hit:
 		return
 	
 	_is_hit = true
